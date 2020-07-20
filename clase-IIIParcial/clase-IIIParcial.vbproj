@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="conexion.vb" />
+    <Compile Include="Encriptar.vb" />
     <Compile Include="frmUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +96,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TiendaDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaDataSet.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +125,17 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="TiendaDataSet.xsc">
+      <DependentUpon>TiendaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TiendaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TiendaDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TiendaDataSet.xss">
+      <DependentUpon>TiendaDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

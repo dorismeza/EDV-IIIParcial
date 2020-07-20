@@ -22,6 +22,7 @@ Partial Class frmUsuario
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.txtApellido = New System.Windows.Forms.TextBox()
@@ -38,7 +39,23 @@ Partial Class frmUsuario
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.dtgUsuario = New System.Windows.Forms.DataGridView()
+        Me.IdUsuarioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ApellidoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreUsuarioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PswDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RolDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EstadoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CorreoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UsuarioBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TiendaDataSet = New clase_IIIParcial.TiendaDataSet()
+        Me.UsuarioTableAdapter = New clase_IIIParcial.TiendaDataSetTableAdapters.usuarioTableAdapter()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dtgUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.UsuarioBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TiendaDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtCodigo
@@ -200,17 +217,104 @@ Partial Class frmUsuario
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
+        'btnEliminar
+        '
+        Me.btnEliminar.Location = New System.Drawing.Point(100, 299)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEliminar.TabIndex = 17
+        Me.btnEliminar.Text = "Eliminar"
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'dtgUsuario
+        '
+        Me.dtgUsuario.AutoGenerateColumns = False
+        Me.dtgUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgUsuario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdUsuarioDataGridViewTextBoxColumn, Me.NombreDataGridViewTextBoxColumn, Me.ApellidoDataGridViewTextBoxColumn, Me.NombreUsuarioDataGridViewTextBoxColumn, Me.PswDataGridViewTextBoxColumn, Me.RolDataGridViewTextBoxColumn, Me.EstadoDataGridViewTextBoxColumn, Me.CorreoDataGridViewTextBoxColumn})
+        Me.dtgUsuario.DataSource = Me.UsuarioBindingSource
+        Me.dtgUsuario.Location = New System.Drawing.Point(299, 17)
+        Me.dtgUsuario.Name = "dtgUsuario"
+        Me.dtgUsuario.Size = New System.Drawing.Size(296, 270)
+        Me.dtgUsuario.TabIndex = 18
+        '
+        'IdUsuarioDataGridViewTextBoxColumn
+        '
+        Me.IdUsuarioDataGridViewTextBoxColumn.DataPropertyName = "idUsuario"
+        Me.IdUsuarioDataGridViewTextBoxColumn.HeaderText = "idUsuario"
+        Me.IdUsuarioDataGridViewTextBoxColumn.Name = "IdUsuarioDataGridViewTextBoxColumn"
+        '
+        'NombreDataGridViewTextBoxColumn
+        '
+        Me.NombreDataGridViewTextBoxColumn.DataPropertyName = "nombre"
+        Me.NombreDataGridViewTextBoxColumn.HeaderText = "nombre"
+        Me.NombreDataGridViewTextBoxColumn.Name = "NombreDataGridViewTextBoxColumn"
+        '
+        'ApellidoDataGridViewTextBoxColumn
+        '
+        Me.ApellidoDataGridViewTextBoxColumn.DataPropertyName = "apellido"
+        Me.ApellidoDataGridViewTextBoxColumn.HeaderText = "apellido"
+        Me.ApellidoDataGridViewTextBoxColumn.Name = "ApellidoDataGridViewTextBoxColumn"
+        '
+        'NombreUsuarioDataGridViewTextBoxColumn
+        '
+        Me.NombreUsuarioDataGridViewTextBoxColumn.DataPropertyName = "nombreUsuario"
+        Me.NombreUsuarioDataGridViewTextBoxColumn.HeaderText = "nombreUsuario"
+        Me.NombreUsuarioDataGridViewTextBoxColumn.Name = "NombreUsuarioDataGridViewTextBoxColumn"
+        '
+        'PswDataGridViewTextBoxColumn
+        '
+        Me.PswDataGridViewTextBoxColumn.DataPropertyName = "psw"
+        Me.PswDataGridViewTextBoxColumn.HeaderText = "psw"
+        Me.PswDataGridViewTextBoxColumn.Name = "PswDataGridViewTextBoxColumn"
+        '
+        'RolDataGridViewTextBoxColumn
+        '
+        Me.RolDataGridViewTextBoxColumn.DataPropertyName = "rol"
+        Me.RolDataGridViewTextBoxColumn.HeaderText = "rol"
+        Me.RolDataGridViewTextBoxColumn.Name = "RolDataGridViewTextBoxColumn"
+        '
+        'EstadoDataGridViewTextBoxColumn
+        '
+        Me.EstadoDataGridViewTextBoxColumn.DataPropertyName = "estado"
+        Me.EstadoDataGridViewTextBoxColumn.HeaderText = "estado"
+        Me.EstadoDataGridViewTextBoxColumn.Name = "EstadoDataGridViewTextBoxColumn"
+        '
+        'CorreoDataGridViewTextBoxColumn
+        '
+        Me.CorreoDataGridViewTextBoxColumn.DataPropertyName = "correo"
+        Me.CorreoDataGridViewTextBoxColumn.HeaderText = "correo"
+        Me.CorreoDataGridViewTextBoxColumn.Name = "CorreoDataGridViewTextBoxColumn"
+        '
+        'UsuarioBindingSource
+        '
+        Me.UsuarioBindingSource.DataMember = "usuario"
+        Me.UsuarioBindingSource.DataSource = Me.TiendaDataSet
+        '
+        'TiendaDataSet
+        '
+        Me.TiendaDataSet.DataSetName = "TiendaDataSet"
+        Me.TiendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'UsuarioTableAdapter
+        '
+        Me.UsuarioTableAdapter.ClearBeforeFill = True
+        '
         'frmUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(346, 355)
+        Me.ClientSize = New System.Drawing.Size(607, 355)
+        Me.Controls.Add(Me.dtgUsuario)
+        Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmUsuario"
         Me.Text = "Form1"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.dtgUsuario, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.UsuarioBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TiendaDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -231,4 +335,17 @@ Partial Class frmUsuario
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents btnGuardar As Button
+    Friend WithEvents btnEliminar As Button
+    Friend WithEvents dtgUsuario As DataGridView
+    Friend WithEvents TiendaDataSet As TiendaDataSet
+    Friend WithEvents UsuarioBindingSource As BindingSource
+    Friend WithEvents UsuarioTableAdapter As TiendaDataSetTableAdapters.usuarioTableAdapter
+    Friend WithEvents IdUsuarioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ApellidoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombreUsuarioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PswDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents RolDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EstadoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CorreoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class
