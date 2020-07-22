@@ -52,6 +52,10 @@ Partial Class frmUsuario
         Me.UsuarioBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TiendaDataSet = New clase_IIIParcial.TiendaDataSet()
         Me.UsuarioTableAdapter = New clase_IIIParcial.TiendaDataSetTableAdapters.usuarioTableAdapter()
+        Me.btnModificar = New System.Windows.Forms.Button()
+        Me.btnBuscar = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtEstado = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dtgUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UsuarioBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +110,7 @@ Partial Class frmUsuario
         'txtCorreo
         '
         Me.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCorreo.Location = New System.Drawing.Point(83, 208)
+        Me.txtCorreo.Location = New System.Drawing.Point(83, 233)
         Me.txtCorreo.Multiline = True
         Me.txtCorreo.Name = "txtCorreo"
         Me.txtCorreo.Size = New System.Drawing.Size(121, 20)
@@ -123,6 +127,8 @@ Partial Class frmUsuario
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label8)
+        Me.GroupBox1.Controls.Add(Me.txtEstado)
         Me.GroupBox1.Controls.Add(Me.cmbRol)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label6)
@@ -157,7 +163,7 @@ Partial Class frmUsuario
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(19, 215)
+        Me.Label7.Location = New System.Drawing.Point(19, 240)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(38, 13)
         Me.Label7.TabIndex = 14
@@ -299,11 +305,50 @@ Partial Class frmUsuario
         '
         Me.UsuarioTableAdapter.ClearBeforeFill = True
         '
+        'btnModificar
+        '
+        Me.btnModificar.Location = New System.Drawing.Point(189, 299)
+        Me.btnModificar.Name = "btnModificar"
+        Me.btnModificar.Size = New System.Drawing.Size(75, 23)
+        Me.btnModificar.TabIndex = 19
+        Me.btnModificar.Text = "Modificar"
+        Me.btnModificar.UseVisualStyleBackColor = True
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.Location = New System.Drawing.Point(275, 299)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(75, 23)
+        Me.btnBuscar.TabIndex = 20
+        Me.btnBuscar.Text = "Buscar"
+        Me.btnBuscar.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(19, 208)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(40, 13)
+        Me.Label8.TabIndex = 17
+        Me.Label8.Text = "Estado"
+        '
+        'txtEstado
+        '
+        Me.txtEstado.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtEstado.Enabled = False
+        Me.txtEstado.Location = New System.Drawing.Point(83, 201)
+        Me.txtEstado.Multiline = True
+        Me.txtEstado.Name = "txtEstado"
+        Me.txtEstado.Size = New System.Drawing.Size(121, 20)
+        Me.txtEstado.TabIndex = 16
+        '
         'frmUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(607, 355)
+        Me.Controls.Add(Me.btnBuscar)
+        Me.Controls.Add(Me.btnModificar)
         Me.Controls.Add(Me.dtgUsuario)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnGuardar)
@@ -348,4 +393,8 @@ Partial Class frmUsuario
     Friend WithEvents RolDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents EstadoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CorreoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents btnModificar As Button
+    Friend WithEvents btnBuscar As Button
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtEstado As TextBox
 End Class
