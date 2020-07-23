@@ -48,6 +48,16 @@ Partial Class frmUsuario
         Me.btnModificar = New System.Windows.Forms.Button()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.dtgUsuario = New System.Windows.Forms.DataGridView()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtBuscar = New System.Windows.Forms.TextBox()
+        Me.IdUsuarioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ApellidoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreUsuarioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PswDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RolDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EstadoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CorreoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.UsuarioBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TiendaDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,17 +287,88 @@ Partial Class frmUsuario
         '
         'dtgUsuario
         '
+        Me.dtgUsuario.AutoGenerateColumns = False
         Me.dtgUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgUsuario.Location = New System.Drawing.Point(304, 38)
+        Me.dtgUsuario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdUsuarioDataGridViewTextBoxColumn, Me.NombreDataGridViewTextBoxColumn, Me.ApellidoDataGridViewTextBoxColumn, Me.NombreUsuarioDataGridViewTextBoxColumn, Me.PswDataGridViewTextBoxColumn, Me.RolDataGridViewTextBoxColumn, Me.EstadoDataGridViewTextBoxColumn, Me.CorreoDataGridViewTextBoxColumn})
+        Me.dtgUsuario.DataSource = Me.UsuarioBindingSource
+        Me.dtgUsuario.Location = New System.Drawing.Point(298, 67)
         Me.dtgUsuario.Name = "dtgUsuario"
         Me.dtgUsuario.Size = New System.Drawing.Size(277, 215)
         Me.dtgUsuario.TabIndex = 21
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(295, 31)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(43, 13)
+        Me.Label9.TabIndex = 23
+        Me.Label9.Text = "Usuario"
+        '
+        'txtBuscar
+        '
+        Me.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtBuscar.Location = New System.Drawing.Point(359, 24)
+        Me.txtBuscar.Multiline = True
+        Me.txtBuscar.Name = "txtBuscar"
+        Me.txtBuscar.Size = New System.Drawing.Size(121, 20)
+        Me.txtBuscar.TabIndex = 22
+        '
+        'IdUsuarioDataGridViewTextBoxColumn
+        '
+        Me.IdUsuarioDataGridViewTextBoxColumn.DataPropertyName = "idUsuario"
+        Me.IdUsuarioDataGridViewTextBoxColumn.HeaderText = "idUsuario"
+        Me.IdUsuarioDataGridViewTextBoxColumn.Name = "IdUsuarioDataGridViewTextBoxColumn"
+        '
+        'NombreDataGridViewTextBoxColumn
+        '
+        Me.NombreDataGridViewTextBoxColumn.DataPropertyName = "nombre"
+        Me.NombreDataGridViewTextBoxColumn.HeaderText = "nombre"
+        Me.NombreDataGridViewTextBoxColumn.Name = "NombreDataGridViewTextBoxColumn"
+        '
+        'ApellidoDataGridViewTextBoxColumn
+        '
+        Me.ApellidoDataGridViewTextBoxColumn.DataPropertyName = "apellido"
+        Me.ApellidoDataGridViewTextBoxColumn.HeaderText = "apellido"
+        Me.ApellidoDataGridViewTextBoxColumn.Name = "ApellidoDataGridViewTextBoxColumn"
+        '
+        'NombreUsuarioDataGridViewTextBoxColumn
+        '
+        Me.NombreUsuarioDataGridViewTextBoxColumn.DataPropertyName = "nombreUsuario"
+        Me.NombreUsuarioDataGridViewTextBoxColumn.HeaderText = "nombreUsuario"
+        Me.NombreUsuarioDataGridViewTextBoxColumn.Name = "NombreUsuarioDataGridViewTextBoxColumn"
+        '
+        'PswDataGridViewTextBoxColumn
+        '
+        Me.PswDataGridViewTextBoxColumn.DataPropertyName = "psw"
+        Me.PswDataGridViewTextBoxColumn.HeaderText = "psw"
+        Me.PswDataGridViewTextBoxColumn.Name = "PswDataGridViewTextBoxColumn"
+        '
+        'RolDataGridViewTextBoxColumn
+        '
+        Me.RolDataGridViewTextBoxColumn.DataPropertyName = "rol"
+        Me.RolDataGridViewTextBoxColumn.HeaderText = "rol"
+        Me.RolDataGridViewTextBoxColumn.Name = "RolDataGridViewTextBoxColumn"
+        '
+        'EstadoDataGridViewTextBoxColumn
+        '
+        Me.EstadoDataGridViewTextBoxColumn.DataPropertyName = "estado"
+        Me.EstadoDataGridViewTextBoxColumn.HeaderText = "estado"
+        Me.EstadoDataGridViewTextBoxColumn.Name = "EstadoDataGridViewTextBoxColumn"
+        '
+        'CorreoDataGridViewTextBoxColumn
+        '
+        Me.CorreoDataGridViewTextBoxColumn.DataPropertyName = "correo"
+        Me.CorreoDataGridViewTextBoxColumn.HeaderText = "correo"
+        Me.CorreoDataGridViewTextBoxColumn.Name = "CorreoDataGridViewTextBoxColumn"
         '
         'frmUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(607, 355)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.dtgUsuario)
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.btnModificar)
@@ -302,6 +383,7 @@ Partial Class frmUsuario
         CType(Me.TiendaDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtgUsuario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -330,4 +412,14 @@ Partial Class frmUsuario
     Friend WithEvents Label8 As Label
     Friend WithEvents txtEstado As TextBox
     Friend WithEvents dtgUsuario As DataGridView
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtBuscar As TextBox
+    Friend WithEvents IdUsuarioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ApellidoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombreUsuarioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PswDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents RolDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EstadoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CorreoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class

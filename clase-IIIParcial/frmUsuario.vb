@@ -1,12 +1,14 @@
 ﻿Imports System.Text.RegularExpressions
+Imports System.ComponentModel
+
 Public Class frmUsuario
     Dim conexion As New conexion()
     Dim dt As DataTable
-    Private srt As Object
+
 
     Private Sub frmUsuario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'TiendaDataSet.usuario' Puede moverla o quitarla según sea necesario.
-        Me.UsuarioTableAdapter.Fill(Me.TiendaDataSet.usuario)
+
         conexion.conectar()
         mostrarDatos()
     End Sub
@@ -26,23 +28,27 @@ Public Class frmUsuario
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-        If validarCorreo(LCase(txtCorreo.Text)) = False Then
-            MessageBox.Show("Correo invalido, *username@dominio.com*", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtCorreo.Focus()
-            txtCorreo.SelectAll()
-            mostrarDatos()
-        Else
-            insertaUsuario()
-            'MessageBox.Show("Correo valido,", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            conexion.conexion.Close()
 
-        End If
+        If validarCorreo(LCase(txtCorreo.Text)) = False Then
+                MessageBox.Show("Correo invalido, *username@dominio.com*", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtCorreo.Focus()
+                txtCorreo.SelectAll()
+                mostrarDatos()
+            Else
+                Limpiar()
+                insertaUsuario()
+                mostrarDatos()
+                'MessageBox.Show("Correo valido,", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                conexion.conexion.Close()
+
+            End If
+
 
     End Sub
     Private Sub insertaUsuario()
         Dim idUsuario As Integer
         Dim nombre, apellido, userName, psw, correo, rol, estado As String
-        idUsuario = txtCodigo.Text
+        idUsuario = Val(txtCodigo.Text)
         nombre = txtNombre.Text
         apellido = txtApellido.Text
         userName = txtUsuario.Text
@@ -50,9 +56,8 @@ Public Class frmUsuario
         correo = txtCorreo.Text
         rol = cmbRol.Text
         estado = "activo"
-
         Try
-            If conexion.insertarUsuario(idUsuario, (nombre), apellido, userName, psw, rol, estado, LCase(correo)) Then
+            If conexion.insertarUsuario(idUsuario, nombre, apellido, userName, psw, rol, estado, correo) Then
                 MessageBox.Show("Guardado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 mostrarDatos()
             Else
@@ -65,13 +70,6 @@ Public Class frmUsuario
             MsgBox(ex.Message)
         End Try
     End Sub
-    Function mayus(str As String) As String
-        Return SrtConv(srt, VbStrConv.ProperCase)
-    End Function
-
-    Private Function SrtConv(srt As Object, properCase As VbStrConv) As String
-        Throw New NotImplementedException()
-    End Function
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         eliminarUsuario()
@@ -113,7 +111,7 @@ Public Class frmUsuario
 
 
     Private Sub llenarCampos(e As DataGridViewCellEventArgs)
-        conexion.conexion.Close()
+
         Try
             Dim dtg As DataGridViewRow = dtgUsuario.Rows(e.RowIndex)
             txtCodigo.Text = dtg.Cells(0).Value.ToString()
@@ -131,20 +129,17 @@ Public Class frmUsuario
         End Try
     End Sub
 
-    Private Sub dtgUsuario_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
-        conexion.conexion.Close()
-        llenarCampos(e)
-    End Sub
+
 
     Private Sub btnModificar_Click_1(sender As Object, e As EventArgs) Handles btnModificar.Click
         modificarUsuario()
     End Sub
 
     Private Sub modificarUsuario()
-        conexion.conexion.Close()
+
         Dim idUsuario As Integer
         Dim nombre, apellido, userName, psw, correo, rol As String
-        idUsuario = txtCodigo.Text
+        idUsuario = Val(txtCodigo.Text)
         nombre = txtNombre.Text
         apellido = txtApellido.Text
         userName = txtUsuario.Text
@@ -153,49 +148,44 @@ Public Class frmUsuario
         rol = cmbRol.Text
 
         Try
-            conexion.conexion.Open()
-
             If (conexion.modificarUsuario(idUsuario, nombre, apellido, userName, psw, rol, correo)) Then
                 MessageBox.Show("Actualizado")
                 mostrarDatos()
                 Limpiar()
-                conexion.conexion.Close()
+                'conexion.conexion.Close()
             Else
                 MessageBox.Show("Error al actualizar")
-                conexion.conexion.Close()
+                'conexion.conexion.Close()
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
+            mostrarDatos()
             conexion.conexion.Close()
         End Try
     End Sub
+
     Private Sub mostrarBusqueda()
-
-            Dim userName As String
-
-            userName = txtUsuario.Text
-
-            Try
-                conexion.conexion.Open()
-
-            If (conexion.buscar(userName)) Then
+        Try
+            dt = conexion.buscarUsuario(" usuario ", " nombreUsuario like '%" + txtBuscar.Text + "%'")
+            If dt.Rows.Count <> 0 Then
                 dtgUsuario.DataSource = dt
                 conexion.conexion.Close()
             Else
                 dtgUsuario.DataSource = Nothing
-                MsgBox("No se puedo encontrar el usuario")
                 conexion.conexion.Close()
-
             End If
         Catch ex As Exception
-                MsgBox(ex.Message)
-                conexion.conexion.Close()
-            End Try
-
+            MsgBox(ex.Message)
+        End Try
     End Sub
+
+
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         conexion.conexion.Close()
         mostrarBusqueda()
     End Sub
 
+    Private Sub dtgUsuario_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles dtgUsuario.CellContentClick
+        llenarCampos(e)
+    End Sub
 End Class
