@@ -5,7 +5,7 @@ Public Class conexion
     Public da As SqlDataAdapter
     Public cmb As SqlCommand
     Public dr As SqlDataReader
-
+    Public comando As SqlCommandBuilder
     Public Sub conectar()
         Try
             conexion.Open()
@@ -72,17 +72,18 @@ Public Class conexion
 
     Public Function modificarUsuario(idUsuario As Integer, nombre As String, apellido As String, userName As String,
                                     psw As String, rol As String, correo As String)
-
-
         Try
             conexion.Open()
-            cmb = New SqlCommand("modificarUsuario", conexion)
+            cmb = New SqlCommand("actualizarUsuario", conexion)
             cmb.CommandType = CommandType.StoredProcedure
+
+
             cmb.Parameters.AddWithValue("@idUsuario", idUsuario)
             cmb.Parameters.AddWithValue("@nombre", nombre)
             cmb.Parameters.AddWithValue("@apellido", apellido)
             cmb.Parameters.AddWithValue("@userName", userName)
             cmb.Parameters.AddWithValue("@psw", psw)
+            cmb.Parameters.AddWithValue("@rol", rol)
             cmb.Parameters.AddWithValue("@rol", rol)
             cmb.Parameters.AddWithValue("@correo", correo)
 
@@ -90,44 +91,24 @@ Public Class conexion
                 Return True
             Else
                 Return False
-
             End If
-
-
-            conexion.Close()
-
         Catch ex As Exception
             MsgBox(ex.Message)
+            Return False
+        Finally
             conexion.Close()
         End Try
     End Function
 
 
-    Public Function consulta()
-        Try
-            conexion.Open()
+    Public Sub consulta(ByVal sql As String, ByVal tabla As String)
 
-            cmb = New SqlCommand("consultaUsuario", conexion)
+        ds.Tables.Clear()
+        da = New SqlDataAdapter(sql, conexion)
+        comando = New SqlCommandBuilder(da)
 
-            cmb.CommandType = CommandType.StoredProcedure
-
-            If cmb.ExecuteNonQuery Then
-                Dim dt As New DataTable
-                Dim da As New SqlDataAdapter(cmb)
-                da.Fill(dt)
-                Return dt
-                conexion.Close()
-            Else
-                Return Nothing
-                conexion.Close()
-            End If
-            conexion.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            conexion.Close()
-            Return Nothing
-        End Try
-    End Function
+        da.Fill(ds, tabla)
+    End Sub
 
     Public Function buscar(userName As String)
         Try
@@ -152,25 +133,5 @@ Public Class conexion
         End Try
     End Function
 
-
-
-
-
-    'Public Function validarUsuario(ByVal codigo As String) As Boolean
-    'Dim resultado As Boolean = False
-    'Try
-    '       conexion.Open()
-    '
-    ' cmb = New SqlCommand("select * from personas.estudiante where codigo='" + codigo + "'", conexion)
-    'dr = cmb.ExecuteReader
-    'If dr.Read Then
-    '           resultado = True
-    'End If
-    '       dr.Close()
-    'Catch ex As Exception
-    '       MsgBox(ex.Message)
-    'End Try
-    'Return resultado
-    'End Function*/
 
 End Class

@@ -2,6 +2,8 @@
 Public Class frmUsuario
     Dim conexion As New conexion()
     Dim dt As DataTable
+    Private srt As Object
+
     Private Sub frmUsuario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'TiendaDataSet.usuario' Puede moverla o quitarla según sea necesario.
         Me.UsuarioTableAdapter.Fill(Me.TiendaDataSet.usuario)
@@ -50,7 +52,7 @@ Public Class frmUsuario
         estado = "activo"
 
         Try
-            If conexion.insertarUsuario(idUsuario, nombre, apellido, userName, psw, rol, estado, correo) Then
+            If conexion.insertarUsuario(idUsuario, (nombre), apellido, userName, psw, rol, estado, LCase(correo)) Then
                 MessageBox.Show("Guardado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 mostrarDatos()
             Else
@@ -63,6 +65,13 @@ Public Class frmUsuario
             MsgBox(ex.Message)
         End Try
     End Sub
+    Function mayus(str As String) As String
+        Return SrtConv(srt, VbStrConv.ProperCase)
+    End Function
+
+    Private Function SrtConv(srt As Object, properCase As VbStrConv) As String
+        Throw New NotImplementedException()
+    End Function
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         eliminarUsuario()
@@ -92,14 +101,9 @@ Public Class frmUsuario
     Private Sub mostrarDatos()
         Try
 
-            dt = conexion.consulta
-            If dt.Rows.Count <> 0 Then
-                dtgUsuario.DataSource = dt
-                conexion.conexion.Close()
-            Else
-                dtgUsuario.DataSource = Nothing
-                conexion.conexion.Close()
-            End If
+            conexion.consulta("select * from usuario", "usuario")
+
+            dtgUsuario.DataSource = conexion.ds.Tables("usuario")
         Catch ex As Exception
             MsgBox(ex.Message)
             conexion.conexion.Close()
@@ -127,7 +131,7 @@ Public Class frmUsuario
         End Try
     End Sub
 
-    Private Sub dtgUsuario_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgUsuario.CellContentClick
+    Private Sub dtgUsuario_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
         conexion.conexion.Close()
         llenarCampos(e)
     End Sub
