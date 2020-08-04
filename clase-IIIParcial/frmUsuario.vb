@@ -1,5 +1,5 @@
-﻿Imports System.Text.RegularExpressions
-Imports System.ComponentModel
+﻿Imports System.ComponentModel
+Imports System.Text.RegularExpressions
 
 Public Class frmUsuario
     Dim conexion As New conexion()
@@ -7,8 +7,6 @@ Public Class frmUsuario
 
 
     Private Sub frmUsuario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'TiendaDataSet.usuario' Puede moverla o quitarla según sea necesario.
-
         conexion.conectar()
         mostrarDatos()
     End Sub
@@ -43,7 +41,6 @@ Public Class frmUsuario
 
             End If
 
-
     End Sub
     Private Sub insertaUsuario()
         Dim idUsuario As Integer
@@ -54,8 +51,10 @@ Public Class frmUsuario
         userName = txtUsuario.Text
         psw = txtContraseña.Text
         correo = txtCorreo.Text
-        rol = cmbRol.Text
         estado = "activo"
+        rol = cmbRol.Text
+
+
         Try
             If conexion.insertarUsuario(idUsuario, nombre, apellido, userName, psw, rol, estado, correo) Then
                 MessageBox.Show("Guardado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -72,7 +71,17 @@ Public Class frmUsuario
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-        eliminarUsuario()
+        Dim Cancel As Integer
+
+        Try
+            If (MsgBox("¿Esta seguro que desea eliminar este servicio?", vbCritical + vbYesNo) = vbYes) Then
+                eliminarUsuario()
+            Else
+                Cancel = 1
+            End If
+        Catch ex As Exception
+            MsgBox("ex.Message")
+        End Try
     End Sub
 
     Private Sub eliminarUsuario()
@@ -187,5 +196,66 @@ Public Class frmUsuario
 
     Private Sub dtgUsuario_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles dtgUsuario.CellContentClick
         llenarCampos(e)
+    End Sub
+
+
+
+    Private Sub txtCodigo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCodigo.KeyPress
+        If Char.IsNumber(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+
+    Private Sub txtNombre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNombre.KeyPress
+        If Char.IsLetter(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+    End Sub
+
+    Private Sub txtApellido_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtApellido.KeyPress
+        If Char.IsLetter(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+    End Sub
+
+    Private Sub txtUsuario_TextChanged(sender As Object, e As EventArgs) Handles txtUsuario.TextChanged
+
+    End Sub
+
+    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
+
+    End Sub
+
+    Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
+
+        txtNombre.Text = StrConv(txtNombre.Text, vbProperCase)
+        txtNombre.SelectionStart = Len(txtNombre.Text)
+    End Sub
+
+    Private Sub txtApellido_TextChanged(sender As Object, e As EventArgs) Handles txtApellido.TextChanged
+
+        txtApellido.Text = StrConv(txtApellido.Text, vbProperCase)
+        txtApellido.SelectionStart = Len(txtApellido.Text)
     End Sub
 End Class

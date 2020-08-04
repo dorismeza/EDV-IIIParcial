@@ -48,8 +48,6 @@ Partial Class frmUsuario
         Me.btnModificar = New System.Windows.Forms.Button()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.dtgUsuario = New System.Windows.Forms.DataGridView()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtBuscar = New System.Windows.Forms.TextBox()
         Me.IdUsuarioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ApellidoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -58,6 +56,8 @@ Partial Class frmUsuario
         Me.RolDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EstadoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CorreoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtBuscar = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.UsuarioBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TiendaDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -291,28 +291,10 @@ Partial Class frmUsuario
         Me.dtgUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgUsuario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdUsuarioDataGridViewTextBoxColumn, Me.NombreDataGridViewTextBoxColumn, Me.ApellidoDataGridViewTextBoxColumn, Me.NombreUsuarioDataGridViewTextBoxColumn, Me.PswDataGridViewTextBoxColumn, Me.RolDataGridViewTextBoxColumn, Me.EstadoDataGridViewTextBoxColumn, Me.CorreoDataGridViewTextBoxColumn})
         Me.dtgUsuario.DataSource = Me.UsuarioBindingSource
-        Me.dtgUsuario.Location = New System.Drawing.Point(298, 67)
+        Me.dtgUsuario.Location = New System.Drawing.Point(335, 50)
         Me.dtgUsuario.Name = "dtgUsuario"
-        Me.dtgUsuario.Size = New System.Drawing.Size(277, 215)
+        Me.dtgUsuario.Size = New System.Drawing.Size(343, 215)
         Me.dtgUsuario.TabIndex = 21
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(295, 31)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(43, 13)
-        Me.Label9.TabIndex = 23
-        Me.Label9.Text = "Usuario"
-        '
-        'txtBuscar
-        '
-        Me.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtBuscar.Location = New System.Drawing.Point(359, 24)
-        Me.txtBuscar.Multiline = True
-        Me.txtBuscar.Name = "txtBuscar"
-        Me.txtBuscar.Size = New System.Drawing.Size(121, 20)
-        Me.txtBuscar.TabIndex = 22
         '
         'IdUsuarioDataGridViewTextBoxColumn
         '
@@ -362,11 +344,29 @@ Partial Class frmUsuario
         Me.CorreoDataGridViewTextBoxColumn.HeaderText = "correo"
         Me.CorreoDataGridViewTextBoxColumn.Name = "CorreoDataGridViewTextBoxColumn"
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(295, 31)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(43, 13)
+        Me.Label9.TabIndex = 23
+        Me.Label9.Text = "Usuario"
+        '
+        'txtBuscar
+        '
+        Me.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtBuscar.Location = New System.Drawing.Point(359, 24)
+        Me.txtBuscar.Multiline = True
+        Me.txtBuscar.Name = "txtBuscar"
+        Me.txtBuscar.Size = New System.Drawing.Size(121, 20)
+        Me.txtBuscar.TabIndex = 22
+        '
         'frmUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(607, 355)
+        Me.ClientSize = New System.Drawing.Size(705, 355)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.dtgUsuario)
